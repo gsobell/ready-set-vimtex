@@ -58,7 +58,7 @@ def parser(in_file, out_file):
         context, trigger, name, flags, body  = snip
         latex = re.sub(r'\$\d', '', body)
         if context:
-            markdown_table += f'\n| {trigger} | {name} | {body} | $$ {latex} $$ | {flags} | {context} |'
+            markdown_table += f'\n| {trigger} | {name} | {body} | $${latex}$$ | {flags} | {context} |'
         else:
             markdown_table += f'\n| {trigger} | {name} | {body} | {latex} | {flags} | None |'
 

@@ -8,7 +8,7 @@ This is for those who want a starting point that "just works" (and also for thos
 
 ## For the Impatient
 
-First, make sure you have $ \text{LaTeX}$ properly installed:
+First, make sure you have $\LaTeX$ properly installed:
 
 For Arch Linux and its derivatives ( Arch $\frac{dy}{dx}$):
 
