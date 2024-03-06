@@ -18,14 +18,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 import re
 
-in_file = './Ultisnips/tex.snippets'  
-out_file = './README.md' 
-read_me = './README-head.md' 
-markdown_table = "| Trigger | Name | Plaintext | LaTeX | Flags | Context | \n| --- | --- | --- | --- | --- | --- |"
-
-
-def parser(in_file, out_file):
-    global markdown_table
+def parser():
+    in_file = './Ultisnips/tex.snippets'  
+    out_file = './README.md' 
+    head_file = './head.md' 
+    tail_file = './tail.md' 
+    markdown_table = "| Trigger | Name | LaTeX | Flags | Context | \n| --- | --- | --- | --- | --- | --- |"
     with open(in_file, 'r') as f:
         lines = f.readlines()
     snips = []
@@ -58,14 +56,16 @@ def parser(in_file, out_file):
         context, trigger, name, flags, body  = snip
         latex = re.sub(r'\$\d', '', body)
         if context:
-            markdown_table += f'\n| {trigger} | {name} | {body} | $${latex}$$ | {flags} | {context} |'
+            markdown_table += f'\n| {trigger} | {name} |  $${latex}$$ | {flags} | {context} |'
         else:
-            markdown_table += f'\n| {trigger} | {name} | {body} | {latex} | {flags} | None |'
+            markdown_table += f'\n| {trigger} | {name} | {latex} | {flags} | None |'
 
-    with open(read_me, 'r', encoding='utf-8') as file:
+    with open(head_file, 'r', encoding='utf-8') as file:
         head = file.read()
+    with open(tail_file, 'r', encoding='utf-8') as file:
+        tail = file.read()
     with open(out_file, 'w') as output:
-        output.write(head + "\n" +markdown_table)
+        output.write(head + "\n" +markdown_table + "\n" + tail)
     print(f"Success! {out_file} generated.")
 
-parser(in_file, out_file)
+parser()

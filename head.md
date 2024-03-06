@@ -43,5 +43,3 @@ Sometimes you just want to write the letters that trigger a snippet, and you end
 ## Table of Snippets:
 
 Note that not all of these may render correctly, since the Github latex rendering doesn't include the `amsmath` package. 
-
-Table generated with `parsnip.py`, for parsing snippets.
