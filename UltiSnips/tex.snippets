@@ -17,6 +17,7 @@ endglobal
 
 
 # LaTex Structure
+
 snippet beg "begin{} / end{}" bA
 \begin{$1}
 	$2
@@ -106,6 +107,7 @@ snippet ali "Align" bA
 endsnippet
 
 # Logic and Operators
+
 context "math()"
 snippet ff "fraction" A
 \frac{$1}{$2}$0
@@ -153,7 +155,7 @@ snippet in "∈" A
 endsnippet
 
 context "math()"
-snippet nin "!∈" A
+snippet nin "∉" A
 \notin
 endsnippet
 
@@ -247,6 +249,7 @@ such that
 endsnippet
 
 # Math Typesetting
+
 context "math()"
 snippet N "Naturals" A
 \mathbb{N}
@@ -290,7 +293,6 @@ context "math()"
 snippet tt "text, AMS" A
 \text{$1} $0
 endsnippet
-
 
 snippet lr( "left( right)" i
 \left( ${1:${VISUAL}} \right) $0
@@ -435,15 +437,14 @@ endsnippet
 #\\`!p snip.rv = match.group(1)`
 #endsnippet
 
-
 #priority 100
 #context "math()"
 #snippet '(?<!\\)(sin|cos|tan|cot|csc|ln|log|exp)' "ln" rwA
 #\\`!p snip.rv = match.group(1)`
 #endsnippet
 
-
 # Greek
+
 context "math()"
 snippet la "λ" i
 \lambda

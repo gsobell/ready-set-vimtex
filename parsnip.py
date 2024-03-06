@@ -17,13 +17,13 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 import re
+in_file = './Ultisnips/tex.snippets'  
+out_file = './README.md' 
 
-def parser():
-    in_file = './Ultisnips/tex.snippets'  
-    out_file = './README.md' 
+def parser(in_file, out_file):
     head_file = './head.md' 
     tail_file = './tail.md' 
-    markdown_table = "| Trigger | Name | LaTeX | Flags | Context | \n| --- | --- | --- | --- | --- | --- |"
+    header = "| Trigger | Name | LaTeX | Flags | Context | \n| --- | --- | --- | --- | --- |"
     with open(in_file, 'r') as f:
         lines = f.readlines()
     snips = []
@@ -32,8 +32,10 @@ def parser():
     inside = False
     for k, line in enumerate(lines):
         line = line.strip()
-        if not line or line[0] == "#":
+        if not line:
             continue
+        elif line[0] == "#" and lines[k - 1].strip() == '' and lines[k + 1].strip() == '':
+            snips.append([None, None, line, None, None]) # section title
         elif ("snippet" in line) and not ("endsnippet" in line):
             if "context" in lines[k - 1]:
                 context = lines[k - 1].split()
@@ -41,22 +43,31 @@ def parser():
             else:
                 new = [None]
             new.extend([line.split(" ")[1], line.split('"')[1], line.split(" ")[-1]])
+            if '"' in  new[-1] or new[-1] == new[0]:
+                new[-1] = None
             # ^^ needs to be fixed, incorrect when no flags present.
             inside = True
         elif "endsnippet" in line:
             new.append(par)
-            snips.append(new)
+            snips.append(new) 
             new = []
             par = ''
             inside = False 
         elif inside:
-            par += line 
+            par += line
 
+    markdown_table = ''
     for snip in snips:
-        context, trigger, name, flags, body  = snip
-        latex = re.sub(r'\$\d', '', body)
+        context, trigger, name, flags, latex = snip
+        if not trigger:
+            markdown_table += "\n"+ "#" + name + "\n" + header
+            continue
+        latex = re.sub(r'\$\d', ' ', latex)
         if context:
             markdown_table += f'\n| {trigger} | {name} |  $${latex}$$ | {flags} | {context} |'
+        elif "begin" in latex:
+            #latex = re.sub(r'\n', '<br>', latex)
+            markdown_table += f'\n| {trigger} | {name} | `{latex}` | {flags} | None |'
         else:
             markdown_table += f'\n| {trigger} | {name} | {latex} | {flags} | None |'
 
@@ -68,4 +79,4 @@ def parser():
         output.write(head + "\n" +markdown_table + "\n" + tail)
     print(f"Success! {out_file} generated.")
 
-parser()
+parser(in_file, out_file)

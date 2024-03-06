@@ -6,20 +6,27 @@ Read Elijan Mastnak's [series](https://ejmastnak.com/tutorials/vim-latex/intro/)
 
 This is for those who want a starting point that "just works" (and also for those who look over my shoulder and ask "what's that!?")
 
-## For the Impatient
+# For the Impatient
 
 First, make sure you have $\LaTeX$ properly installed:
 
 For Arch Linux and its derivatives ( Arch $\frac{dy}{dx}$):
 
 ```
-pacman -S texlive-basic texlive-bin texlive-fontsrecommended texlive-mathscience
+pacman -S texlive-basic texlive-bin texlive-fontsrecommended texlive-mathscience --needed
 ```
 
 Now, the `vim` plugins. Note that `vimtex` and `delimitmate` are in the `AUR`. You can alternatively use a vim plugin manager, but I don't bother.
 
 ```
 yay -S vim-vimtex vim-ultisnips vim-delimitmate
+```
+
+Last, but not least, place the config files in `~/.vim`. Here's a handy script to expedite that, and backup your current `vimrc`:
+
+```
+sh <(curl -s https://raw.githubusercontent.com/gsobell/ready-set-vimtex/main/setup.sh)
+
 ```
 
 Good job! All done! That was quick, right?
@@ -40,6 +47,6 @@ With tab stops (just like typing a matrix on Wolfram Alpha)!
 ## Idiosyncrasies
 Sometimes you just want to write the letters that trigger a snippet, and you end up fighting the auto complete.
 
-## Table of Snippets:
+# Table of Snippets
 
 Note that not all of these may render correctly, since the Github latex rendering doesn't include the `amsmath` package. 
