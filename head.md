@@ -13,7 +13,7 @@ First, make sure you have $\LaTeX$ properly installed:
 For Arch Linux and its derivatives ( Arch $\frac{dy}{dx}$):
 
 ```
-pacman -S texlive-basic texlive-bin texlive-fontsrecommended texlive-mathscience --needed
+pacman -S texlive-basic texlive-bin texlive-fontsrecommended texlive-mathscience texlive-binextra --needed
 ```
 
 Now, the `vim` plugins. Note that `vimtex` and `delimitmate` are in the `AUR`. You can alternatively use a vim plugin manager, but I don't bother.
@@ -26,7 +26,6 @@ Last, but not least, place the config files in `~/.vim`. Here's a handy script t
 
 ```
 sh <(curl -s https://raw.githubusercontent.com/gsobell/ready-set-vimtex/main/setup.sh)
-
 ```
 
 Good job! All done! That was quick, right?
