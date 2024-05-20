@@ -61,6 +61,17 @@ augroup vimtex_config
   autocmd Filetype tex autocmd BufUnload <buffer> VimtexClean
 augroup END
 
+
+
+augroup MarkdownMappings
+    autocmd!
+    autocmd FileType markdown nnoremap <buffer> <silent> <Up> g<Up>
+    autocmd FileType markdown nnoremap <buffer> <silent> <Down> g<Down>
+
+    autocmd FileType markdown inoremap <buffer> <silent> <Up> <C-o>g<Up>
+    autocmd FileType markdown inoremap <buffer> <silent> <Down> <C-o>g<Down>
+augroup END
+
 let g:clipbrdDefaultReg = '+'
 set autoindent
 set backup
@@ -113,6 +124,14 @@ source $VIMRUNTIME/vimrc_example.vim
 "autocmd FileType tex,markdown setlocal spell spelllang=en_us
 autocmd FileType markdown setlocal spell spelllang=en_us
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
+
+
+" Save *.tex files when focus is lost
+"autocmd FocusLost *.tex :wa
+
+" Save *.tex files when idle for 'updatetime'
+"set updatetime=300 
+"autocmd CursorHold,CursorHoldI *tex silent! :wa
 
 " ctrl-click forward search to zathura
 " nnoremap <C-LeftMouse> <plug>(vimtex-view)

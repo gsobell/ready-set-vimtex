@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 import re
-in_file = './Ultisnips/tex.snippets'  
+in_file = './UltiSnips/tex.snippets'  
 out_file = './README.md' 
 
 def parser(in_file, out_file):

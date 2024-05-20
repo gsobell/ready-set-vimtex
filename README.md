@@ -13,7 +13,7 @@ First, make sure you have $\LaTeX$ properly installed:
 For Arch Linux and its derivatives ( Arch $\frac{dy}{dx}$):
 
 ```
-pacman -S texlive-basic texlive-bin texlive-fontsrecommended texlive-mathscience --needed
+pacman -S texlive-basic texlive-bin texlive-fontsrecommended texlive-mathscience texlive-binextra --needed
 ```
 
 Now, the `vim` plugins. Note that `vimtex` and `delimitmate` are in the `AUR`. You can alternatively use a vim plugin manager, but I don't bother.
@@ -26,7 +26,6 @@ Last, but not least, place the config files in `~/.vim`. Here's a handy script t
 
 ```
 sh <(curl -s https://raw.githubusercontent.com/gsobell/ready-set-vimtex/main/setup.sh)
-
 ```
 
 Good job! All done! That was quick, right?
@@ -63,8 +62,9 @@ Note that not all of these may render correctly, since the Github latex renderin
 | ssec | subsection | \subsection{ } | bA | None |
 | sssec | subsubsection | \subsubsection{ } | bA | None |
 | foot | footnote | \footnote{ } | None | None |
-| theorem | theorem | `\begin{theorem} \end{theorem} ` | bA | None |
-| def | definition | `\begin{definition} \end{definition} ` | bA | None |
+| theorem | theorem | `\begin{theorem}[ ] \end{theorem} ` | bA | None |
+| pf | proof | `\begin{proof}[ ] \end{proof} ` | bA | None |
+| def | definition | `\begin{definition}[ ] \end{definition} ` | bA | None |
 | claim | claim | `\begin{claim} \end{claim} ` | bA | None |
 | marg | margin note | \marginpar{ } | None | None |
 | mm | Math | $${1}$`!pif t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:snip.rv = ' 'else:snip.rv = ''`  | wA | None |
@@ -73,28 +73,29 @@ Note that not all of these may render correctly, since the Github latex renderin
 ## Logic and Operators
 | Trigger | Name | LaTeX | Flags | Context | 
 | --- | --- | --- | --- | --- |
-| ff | fraction |  $$\frac{ }{ } $$ | A | "math()" |
+| ff | fraction |  $$\frac{ }{ } $$ | Ai | "math()" |
 | ceil | ceil |  $$\left\lceil   \right\rceil  $$ | iA | "math()" |
 | floor | floor |  $$\left\lfloor   \right\rfloor $$ | iA | "math()" |
 | le | <= |  $$\leqslant$$ | A | "math()" |
 | ge | >= |  $$\geqslant$$ | A | "math()" |
 | ne | != |  $$\neq$$ | A | "math()" |
-| ee | ∃ |  $$\exists \;$$ | iiA | "math()" |
-| aa | ∀ |  $$\forall \;$$ | iA | "math()" |
+| ee | ∃ |  $$\exists$$ | iiA | "math()" |
+| aa | ∀ |  $$\forall$$ | iA | "math()" |
 | in | ∈ |  $$\in$$ | A | "math()" |
 | nin | ∉ |  $$\notin$$ | A | "math()" |
 | xx | cross |  $$\times$$ | A | "math()" |
 | cd | cdot | \cdot | A | None |
 | qq | spaceing |  $$\qquad$$ | A | "math()" |
 | to | -> |  $$\to$$ | A | "math()" |
-| => | => |  $$\implies$$ | None | "math()" |
+| imp | => |  $$\implies$$ | A | "math()" |
+| xr | => |  $$\xrightarrow{ }  $$ | A | "math()" |
 | iff | iff |  $$\iff$$ | Ai | "math()" |
 | f0 | f(x_0) |  $$f(x_0)  $$ | iA | "math()" |
 | fx | f(x) |  $$f(x)  $$ | iA | "math()" |
 | f'x | f(x) |  $$f'(x)   $$ | iA | "math()" |
 | ab | (a,b) |  $$a, b$$ | iA | "math()" |
 | ... | ... |  $$\ldots$$ | A | "math()" |
-| ooo | ∞ |  $$\infty$$ | Ai | "math()" |
+| inf | ∞ |  $$\infty$$ | Ai | "math()" |
 | x0 | x_0 |  $$x_{0}$$ | Ai | "math()" |
 | nn | ∩ |  $$\cap$$ | A | "math()" |
 | uu | ∪ |  $$\cup$$ | A | "math()" |
@@ -117,9 +118,10 @@ Note that not all of these may render correctly, since the Github latex renderin
 | lr| | left| right| | \left| ${1:${VISUAL}} \right|   | i | None |
 | lr{ | left\{ right\} | \left\\{ ${1:${VISUAL}} \right\\}   | i | None |
 | lr[ | left[ right] | \left[ ${1:${VISUAL}} \right]   | i | None |
+| {{ | \{ \} |  $$\{ \}  $$ | iA | "math()" |
 | ub | underbrace |  $$\underbrace{ }_{ }$$ | A | "math()" |
-| sum | sum |  $$\sum_{k=${1:1}}^{${2:\infty}} ${3:a_k z^n}$$ | w | "math()" |
-| \int | integral |  $$\int_{${1:a}}^{${2:b}} ${3:f(x)}\, dx$$ | wA | "math()" |
+| sum | sum |  $$\sum_{k=${1:1}}^{${2:\infty}} ${3:a_k}$$ | w | "math()" |
+| \int | integral |  $$\int_{${1:a}}^{${2:b}} ${3:f(x)}\, dx$$ | w | "math()" |
 | taylor | taylor | \sum_{${1:k}=${2:0}}^{${3:\infty}} ${4:c_ } (x-a)^    | w | None |
 | lim | limit | \lim_{${1:n} \to ${2:\infty}} | w | None |
 | sr | ^2 |  $$^2$$ | iA | "math()" |
@@ -138,11 +140,13 @@ Note that not all of these may render correctly, since the Github latex renderin
 ## Greek
 | Trigger | Name | LaTeX | Flags | Context | 
 | --- | --- | --- | --- | --- |
-| la | λ |  $$\lambda$$ | i | "math()" |
-| ep | ε |  $$\varepsilon$$ | i | "math()" |
-| de | δ |  $$\delta$$ | i | "math()" |
-| om | ω |  $$\omega$$ | i | "math()" |
-| pi | π |  $$\pi$$ | i | "math()" |
-| al | α |  $$\alpha$$ | i | "math()" |
+| la | λ |  $$\lambda$$ | A | "math()" |
+| phi | φ |  $$\varphi$$ | None | "math()" |
+| be | β |  $$\beta$$ | None | "math()" |
+| ep | ε |  $$\varepsilon$$ | A | "math()" |
+| de | δ |  $$\delta$$ | A | "math()" |
+| om | ω |  $$\omega$$ | None | "math()" |
+| pi | π |  $$\pi$$ | None | "math()" |
+| al | α |  $$\alpha$$ | None | "math()" |
 ---
 Cooked up with [`parsnip.py`](https://github.com/gsobell/ready-set-vimtex/blob/main/parsnip.py), a tool for parsing snippets into markdown tables.

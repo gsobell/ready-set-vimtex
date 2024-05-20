@@ -61,15 +61,22 @@ snippet foot "footnote"
 endsnippet
 
 snippet theorem "theorem" bA
-\begin{theorem}
-	$1
+\begin{theorem}[$1]
+	$2
 \end{theorem}
 $0
 endsnippet
 
+snippet pf "proof" bA
+\begin{proof}[$1]
+	$2
+\end{proof}
+$0
+endsnippet
+
 snippet def "definition" bA
-\begin{definition}
-	$1
+\begin{definition}[$1]
+	$2
 \end{definition}
 $0
 endsnippet
@@ -109,7 +116,7 @@ endsnippet
 # Logic and Operators
 
 context "math()"
-snippet ff "fraction" A
+snippet ff "fraction" Ai
 \frac{$1}{$2}$0
 endsnippet
 
@@ -141,12 +148,12 @@ endsnippet
 
 context "math()"
 snippet ee "∃" iiA
-\exists \; 
+\exists 
 endsnippet
 
 context "math()"
 snippet aa "∀" iA
-\forall \; 
+\forall 
 endsnippet
 
 context "math()"
@@ -180,10 +187,16 @@ snippet to "->" A
 endsnippet
 
 context "math()"
-snippet => "=>" 
+snippet imp "=>" A 
 \implies
 endsnippet
 
+context "math()"
+snippet xr "=>" A 
+\xrightarrow{$1} $0
+endsnippet
+
+context "math()"
 context "math()"
 snippet iff "iff" Ai
 \iff
@@ -215,7 +228,7 @@ snippet ... "..." A
 endsnippet
 
 context "math()"
-snippet ooo "∞" Ai
+snippet inf "∞" Ai
 \infty
 endsnippet
 
@@ -311,17 +324,23 @@ snippet lr[ "left[ right]" i
 endsnippet
 
 context "math()"
+snippet {{ "\{ \}" iA
+\{$1\} $0
+endsnippet
+
+
+context "math()"
 snippet ub "underbrace" A
 \underbrace{$1}_{$2}
 endsnippet
 
 context "math()"
 snippet sum "sum" w
-\sum_{k=${1:1}}^{${2:\infty}} ${3:a_k z^n}
+\sum_{k=${1:1}}^{${2:\infty}} ${3:a_k}
 endsnippet
 
 context "math()"
-snippet \int "integral" wA
+snippet \int "integral" w
 \int_{${1:a}}^{${2:b}} ${3:f(x)}\, dx
 endsnippet
 
@@ -446,32 +465,42 @@ endsnippet
 # Greek
 
 context "math()"
-snippet la "λ" i
+snippet la "λ" A
 \lambda
 endsnippet
 
 context "math()"
-snippet ep "ε" i
+snippet phi "φ" 
+\varphi
+endsnippet
+
+context "math()"
+snippet be "β" 
+\beta
+endsnippet
+
+context "math()"
+snippet ep "ε" A
 \varepsilon
 endsnippet
 
 context "math()"
-snippet de "δ" i
+snippet de "δ" A
 \delta
 endsnippet
 
 context "math()"
-snippet om "ω" i
+snippet om "ω" 
 \omega
 endsnippet
 
 context "math()"
-snippet pi "π" i
+snippet pi "π" 
 \pi
 endsnippet
 
 context "math()"
-snippet al "α" i
+snippet al "α" 
 \alpha
 endsnippet
 
