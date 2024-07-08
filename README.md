@@ -70,9 +70,7 @@ Note that not all of these may render correctly, since the Github latex renderin
 | mm | Math | $${1}$`!pif t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:snip.rv = ' 'else:snip.rv = ''`  | wA | None |
 | dm | Math | \[${1:${VISUAL}}\]   | wA | None |
 | ali | Align | `\begin{align*}${1:${VISUAL}}\end{align*}` | bA | None |
-## Logic and Operators
-| Trigger | Name | LaTeX | Flags | Context | 
-| --- | --- | --- | --- | --- |
+| gath | Gather | `\begin{gather*}${1:${VISUAL}}\end{gather*}` | bA | None |
 | ff | fraction |  $$\frac{ }{ } $$ | Ai | "math()" |
 | ceil | ceil |  $$\left\lceil   \right\rceil  $$ | iA | "math()" |
 | floor | floor |  $$\left\lfloor   \right\rfloor $$ | iA | "math()" |
