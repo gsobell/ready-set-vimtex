@@ -72,8 +72,8 @@ Note that not all of these may render correctly, since the Github latex renderin
 | ali | Align | `\begin{align*}${1:${VISUAL}}\end{align*}` | bA | None |
 | gath | Gather | `\begin{gather*}${1:${VISUAL}}\end{gather*}` | bA | None |
 | ff | fraction |  $$\frac{ }{ } $$ | Ai | "math()" |
-| ceil | ceil |  $$\left\lceil   \right\rceil  $$ | iA | "math()" |
-| floor | floor |  $$\left\lfloor   \right\rfloor $$ | iA | "math()" |
+| ceil | ceil |  $$\left\lceil   \right\rceil  $$ | i | "math()" |
+| floor | floor |  $$\left\lfloor   \right\rfloor $$ | i | "math()" |
 | le | <= |  $$\leqslant$$ | A | "math()" |
 | ge | >= |  $$\geqslant$$ | A | "math()" |
 | ne | != |  $$\neq$$ | A | "math()" |
